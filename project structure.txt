@@ -1,0 +1,15 @@
+recipe-app/
+├── public/
+├── src/
+│   ├── components/
+│   │   ├── Header.js
+│   │   ├── Footer.js
+│   │   ├── RecipeList.js
+│   │   ├── RecipeItem.js
+│   │   ├── AddRecipe.js
+│   ├── App.js
+│   ├── index.js
+│   ├── App.css
+│   └── index.css
+├── package.json
+└── README.md
