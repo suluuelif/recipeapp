@@ -1,7 +1,7 @@
 import React from 'react';
 import RecipeItem from './RecipeItem';
 
-const RecipeList = ({ recipes, deleteRecipe }) =>{
+const RecipeList = ({ recipes, deleteRecipe, toggleFavorite, likedRecipes }) =>{
     return(
         <div className= "recipe-list">
             {recipes.map(recipe=>(
@@ -9,6 +9,8 @@ const RecipeList = ({ recipes, deleteRecipe }) =>{
                 key={recipe.id}
                 recipe={recipe}
                 deleteRecipe={deleteRecipe}
+                toggleFavorite={toggleFavorite}
+          likedRecipes={likedRecipes}
                 />
             ))}
 

@@ -1,4 +1,4 @@
-/* src/App.css */
+//* src/App.css */
 .App {
   text-align: center;
   padding: 20px;
@@ -31,13 +31,31 @@ footer {
   margin: 10px;
   width: 300px;
   text-align: left;
+  position: relative;
+  /* Add relative positioning for the heart */
+}
+
+.heart-icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 20px;
+  color: #ccc;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.heart-icon.liked {
+  color: red;
+  /* Change color when liked */
 }
 
 form {
   margin: 20px;
 }
 
-input, textarea {
+input,
+textarea {
   display: block;
   margin: 10px 0;
   padding: 10px;
