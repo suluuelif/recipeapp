@@ -69,3 +69,95 @@ button {
   border: none;
   cursor: pointer;
 }
+
+.theme-icon-container {
+  position: absolute;
+  top: 50px;
+  right: 30px;
+  z-index: 1000;
+}
+.theme-icon{
+  font-size: 1.8rem;
+  margin-left: 10px;
+  cursor: point;
+  transition: transform 0.2s ease;
+}
+
+.theme-icon:hover {
+  transform: scale(1.1);
+  opacity: 1;
+}
+
+.theme-icon.active {
+  opacity: 1;
+}
+body{
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+body.dark-mode{
+  background-color: #121112;
+  color: #fff;
+}
+body.dark-mode.recipe{
+  background-color: #1e1e1e;
+  color: #fff;
+  border-color: #444;
+
+}
+
+body.dark-mode.input, 
+body.dark-mode.input.textarea{
+  background-color: #1e1e1e;
+  color: #fff;
+  border-color: #444;
+}
+body.dark-mode.heart-icon {
+  color: #bbb;
+
+}
+body.dark-mode.heart-icon.liked {
+  color: #ff0000;
+}
+
+body.dark-mode.button {
+  background-color: #444;
+  color: #fff;
+}
+
+body.dark-mode.header {
+  background-color: #1e1e1e;
+  color: #fff;
+}
+
+body.dark-mode.footer {
+  background-color: #1e1e1e;
+  color: #fff;
+}
+
+.rating-stars {
+
+  display: flex;
+
+  gap: 5px;
+
+  margin: 10px 0;
+
+}
+
+.rating-stars span {
+
+  font-size: 24px;
+
+  cursor: pointer;
+
+  transition: transform 0.2s ease, color 0.3s ease;
+
+}
+
+.rating-stars span:hover {
+
+  transform: scale(1.2);
+
+  color: gold;
+
+}

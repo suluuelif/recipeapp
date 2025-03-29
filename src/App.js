@@ -1,5 +1,5 @@
 // src/App.js
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import RecipeList from './components/RecipeList';
@@ -14,6 +14,13 @@ function App() {
   const [filteredRecipes, setFilteredRecipes] = useState([]);
   const [likedRecipes, setLikedRecipes] = useState([]);
   const [showFavorites, setShowFavorites] = useState(false);
+  const [darkMode, setDarkMode] = useState(false);
+
+  useEffect((effect) => {
+    document.body.className = darkMode ? 'dark-mode' : '';
+
+  }, [darkMode]);
+
 
   // Function to add a new recipe
   const addRecipe = (name, description) => {
@@ -23,6 +30,13 @@ function App() {
       description
     };
     setRecipes([...recipes, newRecipe]); // Add new recipe to recipes state
+  };
+
+   // Function to update recipe rating
+   const updateRating = (id, rating) => {
+    setRecipes(recipes.map(recipe =>
+      recipe.id === id ? { ...recipe, rating } : recipe
+    ));
   };
 
   // Function to delete a recipe by ID
@@ -74,31 +88,53 @@ const toggleView = () => {
 const displayedRecipes = showFavorites?
   recipes.filter(recipe => likedRecipes.includes(recipe.id)):
   searchTerm? filteredRecipes: recipes;
-   
+
   return (
     <div className="App">
-      <Header /> 
+      <Header />
+      <div className="toggle-container-theme">
+        <span className={`theme-icon ${!darkMode ? 'active' : ''}`} 
+          onClick={() => setDarkMode(false)}
+          title="Light Mode"
+        >
+          🌞
+        </span>
+  
+        <span className={`theme-icon ${darkMode ? 'active' : ''}`} 
+          onClick={() => setDarkMode(true)}
+          title="Dark Mode"
+        >
+          🌙
+        </span>
+      </div>
+  
       <AddRecipe addRecipe={addRecipe} /> 
       <input
-      type="text"
-      placeholder='Search recipes...'
-      value={searchTerm}
-      onChange={handleSearchChange}
-      ></input>
+        type="text"
+        placeholder="Search recipes..."
+        value={searchTerm}
+        onChange={handleSearchChange}
+      />
       <button onClick={toggleView}>
-        {showFavorites? 'Show All': 'Show favorite recipes'}
+        {showFavorites ? 'Show All' : 'Show favorite recipes'}
       </button>
-      {}
-      {filteredRecipes.length===0 && searchTerm.length!==0 ? (<p>No recipes found</p>): 
-        (<RecipeList recipes={displayedRecipes} 
-          deleteRecipe={deleteRecipe} 
-          toggleFavorite={toggleFavorite}
-          likedRecipes={likedRecipes}
-          />)}
+  
+      {filteredRecipes.length === 0 && searchTerm.length !== 0 ? (
+        <p>No recipes found</p>
+      ) : (
+      <RecipeList 
+        recipes={displayedRecipes} 
+        deleteRecipe={deleteRecipe} 
+        toggleFavorite={toggleFavorite} 
+        likedRecipes={likedRecipes} 
+        updateRating={updateRating}  // Pass updateRating function
+        darkMode={darkMode}  // Pass darkMode state
+/>
+      )}
+  
       <Footer />
-      </div>
+    </div>
   );
 }
-
-// Exporting the App component to use it in other parts of the app
-export default App;
+  export default App;
+  
